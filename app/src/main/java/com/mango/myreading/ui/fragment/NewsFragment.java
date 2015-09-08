@@ -10,25 +10,25 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mango.myreading.R;
-import com.mango.myreading.model.Story;
+import com.mango.myreading.model.News;
 import com.mango.myreading.ui.ArticleText;
-import com.mango.myreading.ui.adapter.StoryAdapter;
-import com.mango.myreading.utils.GetStoryMessage;
+import com.mango.myreading.ui.adapter.NewsAdapter;
+import com.mango.myreading.utils.GetNewsMessage;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/9/8 0008.
  */
-public class StoryFragment extends android.support.v4.app.Fragment {
+public class NewsFragment extends android.support.v4.app.Fragment {
 
     private View mMainView;
 
-    private static final String URL = "http://www.xiaole8.com/gushihui/";
+    private static final String URL = "http://news.163.com/shehui/";
     private ListView listView;
-    private GetStoryMessage getStoryMessage;
-    private StoryAdapter storyAdapter;
-    private List<Story> storys;
+    private GetNewsMessage getNewsMessage;
+    private NewsAdapter newsAdapter;
+    private List<News> newss;
     private Intent intent;
     private Bundle bundle;
 
@@ -39,7 +39,7 @@ public class StoryFragment extends android.support.v4.app.Fragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         //viewGroup是viewpager
-        mMainView = inflater.inflate(R.layout.story_fragment, (ViewGroup) getActivity().findViewById(R.id.viewpager),false);
+        mMainView = inflater.inflate(R.layout.news_fragment, (ViewGroup) getActivity().findViewById(R.id.viewpager),false);
 
         initView();
         getdata();
@@ -55,8 +55,8 @@ public class StoryFragment extends android.support.v4.app.Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Story story = storys.get(position);
-                String textUrl = story.getTextUrl();
+                News news = newss.get(position);
+                String textUrl = news.getTextUrl();
 
                 intent = new Intent(getActivity(), ArticleText.class);
                 bundle = new Bundle();
@@ -72,9 +72,9 @@ public class StoryFragment extends android.support.v4.app.Fragment {
             @Override
             public void run() {
                 super.run(); //处理耗时操作..下载等
-                getStoryMessage = GetStoryMessage.getInstance(getActivity(), URL);
-                storys = getStoryMessage.getStory();
-                storyAdapter = new StoryAdapter(getActivity(),R.layout.article_item,storys);
+                getNewsMessage = GetNewsMessage.getInstance(getActivity(), URL);
+                newss = getNewsMessage.getNews();
+                newsAdapter = new NewsAdapter(getActivity(),R.layout.article_item,newss);
 
                 //Log.e("ms","1");
                 //注意这里是fragment 必须加上getActivity才能改变视图
@@ -82,7 +82,7 @@ public class StoryFragment extends android.support.v4.app.Fragment {
                     @Override
                     public void run() {
                         try{
-                            listView.setAdapter(storyAdapter);
+                            listView.setAdapter(newsAdapter);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -96,7 +96,7 @@ public class StoryFragment extends android.support.v4.app.Fragment {
 
     private void initView()
     {
-        listView = (ListView) mMainView.findViewById(R.id.story_listview);
+        listView = (ListView) mMainView.findViewById(R.id.news_listview);
     }
 
 

@@ -2,7 +2,7 @@ package com.mango.myreading.utils;
 
 import android.content.Context;
 
-import com.mango.myreading.model.Story;
+import com.mango.myreading.model.News;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -17,15 +17,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/9/8 0008.
  */
-public class GetStoryMessage {
+public class GetNewsMessage {
 
-    private static GetStoryMessage getStoryMessage;
+    private static GetNewsMessage getNewsMessage;
     //均来自jsoup
     private Connection conn;
     private Document doc;
     private Elements elements;
 
-    private GetStoryMessage(Context context, String url)
+    private GetNewsMessage(Context context, String url)
     {
         conn = Jsoup.connect(url);
         try {
@@ -39,30 +39,29 @@ public class GetStoryMessage {
         }
     }
 
-    public static GetStoryMessage getInstance(Context context,String url)
+    public static GetNewsMessage getInstance(Context context,String url)
     {
-        if(getStoryMessage==null)
-            getStoryMessage = new GetStoryMessage(context,url);
-        return getStoryMessage;
+        if(getNewsMessage==null)
+            getNewsMessage = new GetNewsMessage(context,url);
+        return getNewsMessage;
     }
 
-    public List<Story> getStory()
+    public List<News> getNews()
     {
 
         try {
-            List<Story> storys = new ArrayList<Story>();
-            Elements elements = doc.select(".rlist ul li"); //注意标签的使用
+            List<News> Newss = new ArrayList<News>();
+            Elements elements = doc.select(".item-top h2");
             for (Element element : elements) {
-                String title = element.select("li").text();
+                String title = element.select("h2").text();
                 String textUrl = element.select("a").attr("abs:href");
-                storys.add(new Story(title, textUrl));
+                Newss.add(new News(title, textUrl));
             }
-            return storys;
+            return Newss;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
 
 }

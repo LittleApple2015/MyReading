@@ -9,7 +9,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 
 import com.mango.myreading.R;
-import com.mango.myreading.ui.fragment.FictionFragment;
+import com.mango.myreading.ui.fragment.NewsFragment;
 import com.mango.myreading.ui.fragment.GuokeFragment;
 import com.mango.myreading.ui.fragment.StoryFragment;
 
@@ -23,7 +23,7 @@ public class Main extends FragmentActivity{
     private ViewPager m_vp;
     private GuokeFragment guokeFragment;
     private StoryFragment storyFragment;
-    private FictionFragment fictionFragment;
+    private NewsFragment fictionFragment;
 
     //页面列表
     private ArrayList<Fragment> fragmentList;
@@ -58,7 +58,7 @@ public class Main extends FragmentActivity{
 */
         guokeFragment = new GuokeFragment();
         storyFragment = new StoryFragment();
-        fictionFragment = new FictionFragment();
+        fictionFragment = new NewsFragment();
 
         fragmentList = new ArrayList<Fragment>();
         fragmentList.add(guokeFragment);
@@ -67,7 +67,7 @@ public class Main extends FragmentActivity{
 
         titleList.add("果壳科技 ");
         titleList.add("故事会");
-        titleList.add("小说选集 ");
+        titleList.add("网易新闻 ");
 
         try{
             m_vp.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));

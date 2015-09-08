@@ -9,21 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mango.myreading.R;
-import com.mango.myreading.model.Story;
+import com.mango.myreading.model.News;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/9/8 0008.
  */
-public class StoryAdapter extends ArrayAdapter<Story>{
+public class NewsAdapter extends ArrayAdapter<News>{
 
     private int resource;
     private TextView title;
     private ImageView imageView;
 
 
-    public StoryAdapter(Context context, int resource, List<Story> objects) {
+    public NewsAdapter(Context context, int resource, List<News> objects) {
         super(context, resource, objects);
         this.resource = resource;
 
@@ -33,9 +33,9 @@ public class StoryAdapter extends ArrayAdapter<Story>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Story story = getItem(position);
+        News news = getItem(position);
         View view;
-       // viewHolder viewHolder;
+        // viewHolder viewHolder;
         if(convertView==null)
         {
             view = LayoutInflater.from(getContext()).inflate(resource,null);
@@ -53,9 +53,8 @@ public class StoryAdapter extends ArrayAdapter<Story>{
         //viewHolder.image.setImageResource(R.drawable.tango);
         title = (TextView) view.findViewById(R.id.title);
         imageView = (ImageView) view.findViewById(R.id.image);
-        title.setText(story.getTitle());
+        title.setText(news.getTitle());
         imageView.setImageResource(R.drawable.ic_launcher);
         return view;
     }
-
 }
