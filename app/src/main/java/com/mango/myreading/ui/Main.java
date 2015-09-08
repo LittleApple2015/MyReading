@@ -9,8 +9,8 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 
 import com.mango.myreading.R;
-import com.mango.myreading.ui.fragment.NewsFragment;
 import com.mango.myreading.ui.fragment.GuokeFragment;
+import com.mango.myreading.ui.fragment.NewsFragment;
 import com.mango.myreading.ui.fragment.StoryFragment;
 
 import java.util.ArrayList;
@@ -39,6 +39,11 @@ public class Main extends FragmentActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //toolbar.setLogo(R.drawable.tango);
+        //toolbar.setTitle("MyReading");
 
         m_vp = (ViewPager)findViewById(R.id.viewpager);
 
